@@ -1,2 +1,2 @@
 # durham-election-map
-Interactive Ward level map of Election results
+Interactive Map showing the Ward local election results and the General election results
