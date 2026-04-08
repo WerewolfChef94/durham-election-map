@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>County Durham — Election Results 2024</title>
+  <title>County Durham â€” Election Results 2024</title>
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
@@ -41,14 +41,14 @@
       font-weight: 300;
     }
 
-    /* ── Layout ── */
+    /* â”€â”€ Layout â”€â”€ */
     #app {
       display: grid;
       grid-template-rows: auto 1fr;
       height: 100vh;
     }
 
-    /* ── Header ── */
+    /* â”€â”€ Header â”€â”€ */
     header {
       padding: 18px 28px 14px;
       background: var(--surface);
@@ -89,7 +89,7 @@
       color: var(--muted);
     }
 
-    /* ── Map container ── */
+    /* â”€â”€ Map container â”€â”€ */
     #map-wrap {
       display: grid;
       grid-template-columns: 1fr 300px;
@@ -101,7 +101,7 @@
       background: #0d1020;
     }
 
-    /* ── Sidebar ── */
+    /* â”€â”€ Sidebar â”€â”€ */
     #sidebar {
       background: var(--surface);
       border-left: 1px solid var(--border);
@@ -129,7 +129,7 @@
       margin-bottom: 14px;
     }
 
-    /* ── Legend ── */
+    /* â”€â”€ Legend â”€â”€ */
     .legend-item {
       display: flex;
       align-items: center;
@@ -152,7 +152,7 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* ── Ward info panel ── */
+    /* â”€â”€ Ward info panel â”€â”€ */
     #ward-info {
       flex: 1;
       padding: 20px;
@@ -204,7 +204,7 @@
       color: #fff;
     }
 
-    /* ── Bar chart ── */
+    /* â”€â”€ Bar chart â”€â”€ */
     .bar-row {
       margin-bottom: 10px;
     }
@@ -232,7 +232,7 @@
       transition: width 0.4s ease;
     }
 
-    /* ── Stats strip ── */
+    /* â”€â”€ Stats strip â”€â”€ */
     .stats-strip {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -264,7 +264,7 @@
       letter-spacing: 0.08em;
     }
 
-    /* ── Leaflet overrides ── */
+    /* â”€â”€ Leaflet overrides â”€â”€ */
     .leaflet-container { background: #0d1020; }
 
     .leaflet-popup-content-wrapper {
@@ -289,7 +289,27 @@
       background: var(--border) !important;
     }
 
-    /* ── Responsive ── */
+    .ward-tooltip {
+      background: var(--surface) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 4px !important;
+      color: var(--text) !important;
+      font-family: 'Source Sans 3', sans-serif !important;
+      font-size: 0.82rem !important;
+      padding: 6px 10px !important;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.5) !important;
+    }
+
+    .ward-tooltip strong {
+      display: block;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .ward-tooltip::before { display: none !important; }
+
+    /* â”€â”€ Responsive â”€â”€ */
     @media (max-width: 700px) {
       #map-wrap { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
       #sidebar  { max-height: 40vh; border-left: none; border-top: 1px solid var(--border); }
@@ -302,7 +322,7 @@
   <header>
     <h1>County <span>Durham</span> Election Results</h1>
     <span class="year-tag">2024</span>
-    <span class="header-note">Durham County Council · May 2024 · 51 wards</span>
+    <span class="header-note">Durham County Council Â· May 2024 Â· 51 wards</span>
   </header>
 
   <div id="map-wrap">
@@ -316,32 +336,32 @@
         <div class="legend-item">
           <div class="legend-swatch" style="background:var(--reform)"></div>
           <span>Reform UK</span>
-          <span class="legend-count" id="count-reform">—</span>
+          <span class="legend-count" id="count-reform">â€”</span>
         </div>
         <div class="legend-item">
           <div class="legend-swatch" style="background:var(--libdem)"></div>
           <span>Liberal Democrats</span>
-          <span class="legend-count" id="count-libdem">—</span>
+          <span class="legend-count" id="count-libdem">â€”</span>
         </div>
         <div class="legend-item">
           <div class="legend-swatch" style="background:var(--indep)"></div>
           <span>Independent</span>
-          <span class="legend-count" id="count-indep">—</span>
+          <span class="legend-count" id="count-indep">â€”</span>
         </div>
         <div class="legend-item">
           <div class="legend-swatch" style="background:var(--labour)"></div>
           <span>Labour</span>
-          <span class="legend-count" id="count-labour">—</span>
+          <span class="legend-count" id="count-labour">â€”</span>
         </div>
         <div class="legend-item">
           <div class="legend-swatch" style="background:var(--green)"></div>
           <span>Green</span>
-          <span class="legend-count" id="count-green">—</span>
+          <span class="legend-count" id="count-green">â€”</span>
         </div>
         <div class="legend-item">
           <div class="legend-swatch" style="background:var(--tory)"></div>
           <span>Conservative</span>
-          <span class="legend-count" id="count-tory">—</span>
+          <span class="legend-count" id="count-tory">â€”</span>
         </div>
       </div>
 
@@ -378,7 +398,7 @@
 </div>
 
 <script>
-// ── Party config ──────────────────────────────────────────────
+// â”€â”€ Party config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PARTIES = [
   { key: 'reform_uk',      label: 'Reform UK',          color: '#12b5b5' },
   { key: 'labour',         label: 'Labour',             color: '#e4003b' },
@@ -403,7 +423,7 @@ function partyColor(name) {
   return WINNER_COLOR[name] || '#7b68ee';
 }
 
-// ── Map setup ─────────────────────────────────────────────────
+// â”€â”€ Map setup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const map = L.map('map', { zoomControl: true, attributionControl: true });
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png', {
@@ -412,7 +432,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_matter/{z}/{x}/{y}{r}.png', 
   maxZoom: 19
 }).addTo(map);
 
-// ── Load GeoJSON ──────────────────────────────────────────────
+// â”€â”€ Load GeoJSON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 let geojsonLayer;
 let counts = {};
 
@@ -437,6 +457,11 @@ fetch('data/2024.geojson')
         weight:      1.2,
       }),
       onEachFeature: (feature, layer) => {
+        const p = feature.properties;
+        layer.bindTooltip(
+          `<strong>${p.WD25NM}</strong><br>${p.winning_party}`,
+          { sticky: true, opacity: 0.95, className: 'ward-tooltip' }
+        );
         layer.on({
           mouseover(e) {
             e.target.setStyle({ fillOpacity: 0.9, weight: 2.5, color: '#fff' });
@@ -458,10 +483,10 @@ fetch('data/2024.geojson')
   .catch(err => {
     console.error(err);
     document.getElementById('ward-placeholder').innerHTML =
-      '<p style="color:#e4003b">⚠ Could not load GeoJSON.<br>Make sure <code>data/2024.geojson</code> exists in your repo.</p>';
+      '<p style="color:#e4003b">âš  Could not load GeoJSON.<br>Make sure <code>data/2024.geojson</code> exists in your repo.</p>';
   });
 
-// ── Legend counts ─────────────────────────────────────────────
+// â”€â”€ Legend counts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function updateLegendCounts(c) {
   const map = {
     'Reform UK':             'reform',
@@ -477,34 +502,39 @@ function updateLegendCounts(c) {
   });
 }
 
-// ── Ward detail panel ─────────────────────────────────────────
+// â”€â”€ Ward detail panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function showWardDetail(p) {
   document.getElementById('ward-placeholder').style.display = 'none';
   const detail = document.getElementById('ward-detail');
   detail.style.display = 'block';
 
   document.getElementById('detail-name').textContent = p.WD25NM;
-  document.getElementById('detail-meta').textContent = 'County Durham · 2024 Council Election';
+  document.getElementById('detail-meta').textContent = 'County Durham Â· 2024 Council Election';
 
   const winnerEl = document.getElementById('detail-winner');
   winnerEl.textContent = p.winning_party;
   winnerEl.style.background = partyColor(p.winning_party);
 
-  // Vote share bars — sort by votes descending
+  // Vote share bars â€” sort by votes descending
   const barsEl = document.getElementById('detail-bars');
   barsEl.innerHTML = '';
 
   const rows = PARTIES
-    .map(pt => ({ label: pt.label, pct: p[pt.key + '_pct'] || 0, color: pt.color }))
-    .filter(r => r.pct > 0)
-    .sort((a, b) => b.pct - a.pct);
+    .map(pt => ({
+      label: pt.label,
+      pct:   p[pt.key + '_pct']   || 0,
+      votes: p[pt.key + '_votes'] || 0,
+      color: pt.color
+    }))
+    .filter(r => r.votes > 0)
+    .sort((a, b) => b.votes - a.votes);
 
   rows.forEach(r => {
     barsEl.innerHTML += `
       <div class="bar-row">
         <div class="bar-label-row">
           <span class="bar-party">${r.label}</span>
-          <span class="bar-pct">${r.pct}%</span>
+          <span class="bar-pct">${r.votes.toLocaleString()} <span style="color:var(--muted)">(${r.pct}%)</span></span>
         </div>
         <div class="bar-track">
           <div class="bar-fill" style="width:${r.pct}%; background:${r.color}"></div>
@@ -515,8 +545,8 @@ function showWardDetail(p) {
   document.getElementById('detail-votes').textContent =
     (p.total_votes || 0).toLocaleString();
 
-  // Turnout isn't stored in properties — show votes cast only
-  document.getElementById('detail-turnout').textContent = '—';
+  document.getElementById('detail-turnout').textContent =
+    (p.turnout_pct || 0).toFixed(1) + '%';
 }
 </script>
 </body>
